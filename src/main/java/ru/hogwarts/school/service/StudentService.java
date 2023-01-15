@@ -31,12 +31,12 @@ public class StudentService {
         return studentList.remove(id);
     }
 
-    public List<Student> getStudentsByAge(long id) {
+    public List<Student> getStudentsByAge(long age) {
         List<Student> listStudentsByAge = new ArrayList<>();
-        if (id >= 0 || id < studentList.size()) {
+        if (age >= 0 || age < studentList.size()) {
             for (int i = 0; i < studentList.size(); i++) {
-                if (studentList.get(id).getAge() == id) {
-                    listStudentsByAge.add(studentList.get(id));
+                if (studentList.get(i).getAge() == age) {
+                    listStudentsByAge.add(studentList.get(i));
                 }
             }
             return listStudentsByAge;

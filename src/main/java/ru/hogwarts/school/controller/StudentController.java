@@ -35,8 +35,8 @@ public class StudentController {
         return studentService.geleteStudent(id);
     }
 
-    @GetMapping("{id}")
-    public List<Student> getStudentsByAge(@PathVariable long id) {
-        return studentService.getStudentsByAge(id);
+    @GetMapping("{age}")
+    public List<Student> getStudentsByAge(@PathVariable long age) {
+        return studentService.getStudentsByAge(age);
     }
 }
