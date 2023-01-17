@@ -1,6 +1,6 @@
 package ru.hogwarts.school.controller;
 
-import jakarta.websocket.server.PathParam;
+
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
