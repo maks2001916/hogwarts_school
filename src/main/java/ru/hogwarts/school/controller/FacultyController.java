@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("Faculty")
+@RequestMapping("/Faculty")
 public class FacultyController {
     private final FacultyService facultyService;
 
@@ -20,7 +20,7 @@ public class FacultyController {
         this.facultyService = facultyService;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Faculty getFacultyForId(@PathVariable long id) {
         return facultyService.findFaculty(id);
     }
@@ -35,7 +35,7 @@ public class FacultyController {
         return facultyService.editFaculty(faculty);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteFaculty(@PathVariable long id) {
         facultyService.deleteFaculty(id);
         return ResponseEntity.ok().build();
