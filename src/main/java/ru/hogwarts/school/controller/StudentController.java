@@ -21,8 +21,15 @@ public class StudentController {
         return studentService.findStudent(id);
     }
 
+    @GetMapping
+    public Student findStudentByAge(@RequestParam Long ageAfter,
+                                    @RequestParam Long ageBefore) {
+        return studentService.findStudentByAge(ageAfter, ageBefore);
+    }
+
     @PostMapping()
     public Student createStudent(@RequestBody Student student) {
+
         return studentService.createStudent(student);
     }
 

@@ -33,4 +33,7 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
+    public Student findStudentByAge(Long ageAfter, Long ageBefore) {
+        return studentRepository.findByAgeBetween(ageAfter, ageBefore);
+    }
 }
