@@ -19,3 +19,5 @@ where age < student.id;
 
 SELECT * from faculty, student
 where student.id = faculty.id
+
+SELECT * from student ORDER BY age;

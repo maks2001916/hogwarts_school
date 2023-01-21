@@ -26,13 +26,19 @@ public class FacultyController {
     }
 
     @GetMapping
-    public Faculty getFacultyByNameOrClor(@RequestParam(required = false) String name,
+    public Faculty getFacultyByNameOrColor(@RequestParam(required = false) String name,
                                           @RequestParam(required = false) String color) {
         return facultyService.findFacultyByNameOrColor(name, color);
     }
 
+    @GetMapping("/student")
+    public Faculty getStudentsForFaculty(@RequestParam Student student) {
+        return facultyService.findFaculty(student.getId());
+    }
+
     @PostMapping()
     public Faculty createFaculty(@RequestBody Faculty faculty) {
+
         return facultyService.createFaculty(faculty);
     }
 
