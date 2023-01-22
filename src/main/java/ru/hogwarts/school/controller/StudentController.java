@@ -28,9 +28,9 @@ public class StudentController {
         return studentService.findStudentByAge(ageAfter, ageBefore);
     }
 
-    @GetMapping("/faculty")
-    public Student findFacultyOfStudent(@RequestParam Faculty faculty) {
-        return studentService.findStudent(faculty.getId());
+    @GetMapping("/faculty/{studentId}")
+    public ResponseEntity<Faculty> findFacultyOfStudent(@PathVariable Long studentId) {
+        return ResponseEntity.ok(studentService.findStudent(studentId).getFaculty());
     }
 
     @PostMapping()

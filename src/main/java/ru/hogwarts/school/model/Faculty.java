@@ -20,6 +20,10 @@ public class Faculty {
         this.students = students;
     }
 
+    public Collection<Student> getStudents() {
+        return students;
+    }
+
     public Faculty() {
 
     }
