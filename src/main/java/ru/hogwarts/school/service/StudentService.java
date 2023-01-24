@@ -38,7 +38,5 @@ public class StudentService {
         return studentRepository.findByAgeBetween(ageAfter, ageBefore);
     }
 
-    public Faculty findFacultyOfStudent(Student student) {
-        return studentRepository.
-    }
+
 }
