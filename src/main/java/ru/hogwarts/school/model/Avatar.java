@@ -2,10 +2,7 @@ package ru.hogwarts.school.model;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -17,11 +14,22 @@ public class Avatar {
     private String filePath;
     private long fileSize;
     private String mediaType;
+    @Lob
     private byte[] data;
-    @Value("${path.to.avatars.folder}")
-    private String avatarsDir;
     @OneToOne
     private Student student;
+
+    public Avatar() {
+
+    }
+
+    public Avatar(Long id, String filePath, String mediaType, long fileSize, Student student) {
+        this.id = id;
+        this.filePath = filePath;
+        this.mediaType = mediaType;
+        this.fileSize = fileSize;
+        this.student = student;
+    }
 
     public Long getId() {
         return id;
