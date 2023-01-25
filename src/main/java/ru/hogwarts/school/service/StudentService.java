@@ -49,7 +49,7 @@ public class StudentService {
         return studentRepository.findByAgeBetween(ageAfter, ageBefore);
     }
 
-    public Optional<Avatar> findAvatar(long studentId) {
+    public Avatar findAvatar(long studentId) {
         return avatarRepository.findByStudentId(studentId);
     }
 
