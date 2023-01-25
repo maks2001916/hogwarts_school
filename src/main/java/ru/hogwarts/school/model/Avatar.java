@@ -31,6 +31,10 @@ public class Avatar {
         this.student = student;
     }
 
+    public Avatar findAvatar(long avatarId) {
+        return
+    }
+
     public Long getId() {
         return id;
     }

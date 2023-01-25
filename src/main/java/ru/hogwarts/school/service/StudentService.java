@@ -11,6 +11,7 @@ import ru.hogwarts.school.repositories.StudentRepository;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Optional;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 
@@ -46,6 +47,10 @@ public class StudentService {
 
     public Student findStudentByAge(Long ageAfter, Long ageBefore) {
         return studentRepository.findByAgeBetween(ageAfter, ageBefore);
+    }
+
+    public Optional<Avatar> findAvatar(long studentId) {
+        return avatarRepository.findByStudentId(studentId);
     }
 
     public void uploadAvatar(Long studentId, MultipartFile file) throws IOException {

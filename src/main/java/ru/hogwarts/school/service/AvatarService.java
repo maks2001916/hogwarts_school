@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.hogwarts.school.model.Avatar;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repositories.AvatarRepository;
+import ru.hogwarts.school.repositories.StudentRepository;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -16,10 +17,13 @@ import static java.nio.file.StandardOpenOption.CREATE_NEW;
 @Service
 public class AvatarService {
 
-    private AvatarRepository avatarRepository;
 
-    public AvatarService(AvatarRepository avatarRepository) {
+
+    private AvatarRepository avatarRepository;
+    private StudentRepository studentRepository;
+    public AvatarService(AvatarRepository avatarRepository, StudentRepository studentRepository) {
         this.avatarRepository = avatarRepository;
+        this.studentRepository = studentRepository;
     }
 
     public void uploadAvatar(Long studentId, MultipartFile avatarFile) throws IOException {
