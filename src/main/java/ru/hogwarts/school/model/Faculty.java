@@ -13,7 +13,7 @@ public class Faculty {
     private long id;
     private String name;
     private String color;
-    @OneToMany(mappedBy = "faculty_id")
+    @OneToMany(mappedBy = "faculty")
     @JsonManagedReference
     private Collection<Student> students;
 

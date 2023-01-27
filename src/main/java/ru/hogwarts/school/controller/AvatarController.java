@@ -39,7 +39,7 @@ public class AvatarController {
 
     @GetMapping(value = "/{id}/avatar/preview")
     public ResponseEntity<byte[]> downloadAvatar(@PathVariable long id) {
-        Avatar avatar = studentService.findAvatar(id).orElse(null);
+        Avatar avatar = avatarService.findAvatar(id);
 
         if (avatar != null) {
 
@@ -55,7 +55,7 @@ public class AvatarController {
 
     @GetMapping("/{id}/avatar")
     public void downloadAvatar(@PathVariable long id, HttpServletResponse response) throws IOException {
-        Avatar avatar = studentService.findAvatar(id).orElse(null);
+        Avatar avatar = avatarService.findAvatar(id);
 
         if (avatar != null) {
 

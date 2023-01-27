@@ -22,11 +22,9 @@ public class StudentService {
     private String avatarsDir;
 
     private final StudentRepository studentRepository;
-    private final AvatarRepository avatarRepository;
 
-    public StudentService(StudentRepository studentRepository, AvatarRepository avatarRepository) {
+    public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
-        this.avatarRepository = avatarRepository;
     }
 
     public Student createStudent(Student student) {
@@ -48,12 +46,6 @@ public class StudentService {
     public Student findStudentByAge(Long ageAfter, Long ageBefore) {
         return studentRepository.findByAgeBetween(ageAfter, ageBefore);
     }
-
-    public Optional<Avatar> findAvatar(long studentId) {
-        return avatarRepository.findByStudentId(studentId);
-    }
-
-
 
     private String getExtension(String fileName) {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
