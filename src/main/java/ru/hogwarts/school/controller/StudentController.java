@@ -63,46 +63,5 @@ public class StudentController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping(value = "/{id}/avatar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> uploadAvatar(@PathVariable Long id, @RequestParam MultipartFile avatar) throws IOException {
-        if (avatar.getSize() > 1024 * 300) {
-            return ResponseEntity.badRequest().body("File is too dig");
-        }
-        studentService.uploadAvatar(id, avatar);
-        return ResponseEntity.ok().build();
-    }
 
-    @GetMapping(value = "/{id}/avatar/preview")
-    public ResponseEntity<byte[]> downloadAvatar(@PathVariable long id) {
-        Avatar avatar = studentService.findAvatar(id).orElse(null);
-
-        if (avatar != null) {
-
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.parseMediaType(avatar.getMediaType()));
-            headers.setContentLength(avatar.getData().length);
-
-            return ResponseEntity.status(HttpStatus.OK).headers(headers).body(avatar.getData());
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
-
-    @GetMapping("/{id}/avatar")
-    public void downloadAvatar(@PathVariable long id, HttpServletResponse response) throws IOException {
-        Avatar avatar = studentService.findAvatar(id).orElse(null);
-
-        if (avatar != null) {
-
-            Path path = Path.of(avatar.getFilePath());
-
-            try (InputStream is = Files.newInputStream(path);
-                 OutputStream os = response.getOutputStream();) {
-                response.setStatus(200);
-                response.setContentType(avatar.getMediaType());
-                response.setContentLength((int) avatar.getFileSize());
-                is.transferTo(os);
-            }
-        }
-    }
 }
