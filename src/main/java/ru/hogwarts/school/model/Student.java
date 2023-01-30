@@ -28,6 +28,9 @@ public class Student {
 
     }
 
+    public Student(long id, String name, int age) {
+    }
+
     public Faculty getFaculty() {
         return faculty;
     }

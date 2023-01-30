@@ -23,6 +23,9 @@ public class Faculty {
         this.students = students;
     }
 
+    public Faculty(String name, String color, long id) {
+    }
+
     public Collection<Student> getStudents() {
         return students;
     }
