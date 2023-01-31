@@ -5,12 +5,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.hogwarts.school.model.Avatar;
 import ru.hogwarts.school.model.Student;
+import ru.hogwarts.school.model.StudentByCategory;
 import ru.hogwarts.school.repositories.AvatarRepository;
 import ru.hogwarts.school.repositories.StudentRepository;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
@@ -48,5 +50,17 @@ public class StudentService {
 
     private String getExtension(String fileName) {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
+    }
+
+    public List<StudentByCategory> getStudentByCategory() {
+        return studentRepository.getStudentByCategory();
+    }
+
+    public List<StudentByCategory> getAvgAgeStudentByCategory() {
+        return studentRepository.getAvgAgeStudentByCategory();
+    }
+
+    public List<StudentByCategory> gatLastFiveStudentByCategory() {
+        return studentRepository.getLastFiveStudentByCategory();
     }
 }
