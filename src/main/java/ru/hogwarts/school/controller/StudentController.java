@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.hogwarts.school.model.Avatar;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
+import ru.hogwarts.school.model.StudentByCategory;
 import ru.hogwarts.school.service.StudentService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +31,20 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    @GetMapping("/student-by-categories")
+    public List<StudentByCategory> getStudentByCategories() {
+        return studentService.getStudentByCategory();
+    }
+
+    @GetMapping("/avg-age-student-by-categories")
+    public List<StudentByCategory> getAvgAgeStudentByCategories() {
+        return studentService.getAvgAgeStudentByCategory();
+    }
+
+    @GetMapping("/last-five-student-by-categories")
+    public List<StudentByCategory> getLastFiveStudentByCategories() {
+        return studentService.gatLastFiveStudentByCategory();
+    }
     @GetMapping("/{id}")
     public Student getStudentForId(@PathVariable long id) {
         return studentService.findStudent(id);

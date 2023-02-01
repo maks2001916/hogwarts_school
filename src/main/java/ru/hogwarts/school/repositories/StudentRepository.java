@@ -10,12 +10,12 @@ import java.util.List;
 public interface StudentRepository extends JpaRepository<Student, Long> {
     Student findByAgeBetween(Long ageAfter, Long ageBefore);
 
-    @Query(value = "SELECT category, SUM(amount) as amount FROM expenses GROUP BY category", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) from student", nativeQuery = true)
     List<StudentByCategory> getStudentByCategory();
 
-    @Query(value = "SELECT age, AVG(age) as age FROM expenses GROUP BY age", nativeQuery = true)
+    @Query(value = "SELECT AVG(*) from age", nativeQuery = true)
     List<StudentByCategory> getAvgAgeStudentByCategory();
 
-    @Query(value = "SELECT category, as amount FROM expenses GROUP BY category, OFFSET(LIMIT - 5)", nativeQuery = true)
+    @Query(value = "SELECT * from student, OFFSET(LIMIT - 5)", nativeQuery = true)
     List<StudentByCategory> getLastFiveStudentByCategory();
 }
