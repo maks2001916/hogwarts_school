@@ -27,7 +27,7 @@ public class FacultyController {
 
     @GetMapping
     public Faculty getFacultyByNameOrColor(@RequestParam(required = false) String name,
-                                          @RequestParam(required = false) String color) {
+                                           @RequestParam(required = false) String color) {
         return facultyService.findFacultyByNameOrColor(name, color);
     }
 
@@ -53,4 +53,9 @@ public class FacultyController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/facults/colorAndName/{color}{name}")
+    public ResponseEntity<List<Faculty>> getFacultysByColorAndName(@PathVariable("color") String color, @PathVariable("name") String name) {
+        List<Faculty> faculties = facultyService.getFacultyByColorAndName(color, name);
+        return ResponseEntity.ok(faculties);
+    }
 }

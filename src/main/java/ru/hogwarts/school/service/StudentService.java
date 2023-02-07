@@ -63,4 +63,8 @@ public class StudentService {
     public List<StudentByCategory> gatLastFiveStudentByCategory() {
         return studentRepository.getLastFiveStudentByCategory();
     }
+
+    public List<Student> getStudentByName(String name) {
+        return studentRepository.getStudentByName(name);
+    }
 }
