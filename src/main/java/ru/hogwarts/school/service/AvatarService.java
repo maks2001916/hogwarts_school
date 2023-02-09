@@ -1,5 +1,7 @@
 package ru.hogwarts.school.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -13,11 +15,9 @@ import javax.print.attribute.standard.PageRanges;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import static io.swagger.v3.core.util.AnnotationsUtils.getExtensions;
+
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 
 @Service
@@ -26,6 +26,8 @@ public class AvatarService {
     @Value("${path.to.avatars.folder}")
     private String avatarsDir;
 
+    Logger logger = LoggerFactory.getLogger(AvatarService.class);
+    
     private AvatarRepository avatarRepository;
     private StudentRepository studentRepository;
     public AvatarService(AvatarRepository avatarRepository, StudentRepository studentRepository) {
@@ -34,6 +36,7 @@ public class AvatarService {
     }
 
     public void uploadAvatar(Long studentId, MultipartFile avatarFile) throws IOException {
+        logger.debug("method called uploadAvatar");
         Student student = studentRepository.getById(studentId);
         Path filePath = Path.of(avatarsDir, student + "." + getExtensions(avatarFile.getOriginalFilename()));
         Files.createDirectories(filePath.getParent());
@@ -56,15 +59,18 @@ public class AvatarService {
     }
 
     public Avatar findAvatar(long studentId) {
+        logger.debug("method called findAvatar");
         return avatarRepository.findByStudentId(studentId).orElse(new Avatar());
     }
 
     public List<Avatar> getAllAvatars(Integer pageNumber, Integer pageSize) {
+        logger.debug("method called getAllAvatars");
         PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
         return avatarRepository.findAll(pageRequest).getContent();
     }
 
     private String getExtensions(String fileName) {
+        logger.debug("method called getExtensions");
         return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
 }

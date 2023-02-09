@@ -43,7 +43,7 @@ public class StudentController {
 
     @GetMapping("/last-five-student-by-categories")
     public List<StudentByCategory> getLastFiveStudentByCategories() {
-        return studentService.gatLastFiveStudentByCategory();
+        return studentService.getLastFiveStudentByCategory();
     }
     @GetMapping("/{id}")
     public Student getStudentForId(@PathVariable long id) {
