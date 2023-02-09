@@ -1,20 +1,20 @@
 package ru.hogwarts.school.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 @RestController
 @RequestMapping("/getPort")
 public class InfoController {
 
+    @Value("8080")
+    private String port;
+
     @GetMapping()
-    public String getPort() throws UnknownHostException {
-        String hostName = InetAddress.getLocalHost().getHostName();
-        return hostName;
+    public String getPort() {
+        return port;
     }
 
 }

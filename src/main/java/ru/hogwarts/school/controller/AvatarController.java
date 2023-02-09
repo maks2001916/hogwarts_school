@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.hogwarts.school.model.Avatar;
-import ru.hogwarts.school.service.AvatarService;
+import ru.hogwarts.school.service.AvatarServiceProduction;
 import ru.hogwarts.school.service.StudentService;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,9 +22,9 @@ import java.util.List;
 @RequestMapping("/avatar")
 public class AvatarController {
 
-    private final AvatarService avatarService;
+    private final AvatarServiceProduction avatarService;
     private final StudentService studentService;
-    public AvatarController(AvatarService avatarService, StudentService studentService) {
+    public AvatarController(AvatarServiceProduction avatarService, StudentService studentService) {
         this.avatarService = avatarService;
         this.studentService = studentService;
     }

@@ -21,16 +21,16 @@ import java.util.List;
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 
 @Service
-public class AvatarService {
+public class AvatarServiceProduction {
 
     @Value("${path.to.avatars.folder}")
     private String avatarsDir;
 
-    Logger logger = LoggerFactory.getLogger(AvatarService.class);
+    Logger logger = LoggerFactory.getLogger(AvatarServiceProduction.class);
     
     private AvatarRepository avatarRepository;
     private StudentRepository studentRepository;
-    public AvatarService(AvatarRepository avatarRepository, StudentRepository studentRepository) {
+    public AvatarServiceProduction(AvatarRepository avatarRepository, StudentRepository studentRepository) {
         this.avatarRepository = avatarRepository;
         this.studentRepository = studentRepository;
     }
