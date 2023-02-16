@@ -7,14 +7,17 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.model.StudentByCategory;
 import ru.hogwarts.school.repositories.StudentRepository;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class StudentService {
 
     private final StudentRepository studentRepository;
 
-    Logger logger = LoggerFactory.getLogger(StudentService.class);
+    private Logger logger = LoggerFactory.getLogger(StudentService.class);
 
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
@@ -69,4 +72,32 @@ public class StudentService {
         logger.debug("method called getStudentByName");
         return studentRepository.getStudentByName(name);
     }
+
+    public List<Student> getStudentOnA(char variable) {
+        logger.debug("method called getStudentOnA");
+        List<Student> filteredStudents = studentRepository.findAll()
+                .stream()
+                .filter(s -> s.getName().toLowerCase().toUpperCase().startsWith("A"))
+                .collect(Collectors.toList());
+        return filteredStudents;
+    }
+
+    public String getLongestFacultyName() {
+        logger.debug("method called getLongestFacultyName");
+        String longestFacultyName = studentRepository.findAll()
+                .stream()
+                .map(s -> s.getFaculty().getName().length())
+                .max(Comparator.comparingInt(s -> s.g))
+
+
+    }
+
+    public int getExpression() {
+        logger.debug("method called getExpression");
+        int sum = Stream.iterate(1, a -> a + 1)
+                .limit(1_000_000)
+                .reduce(0, (a,b) -> a + b);
+        return sum;
+    }
+
 }

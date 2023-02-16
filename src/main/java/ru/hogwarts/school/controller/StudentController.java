@@ -71,4 +71,22 @@ public class StudentController {
         return ResponseEntity.ok(students);
     }
 
+    @GetMapping("/studentsOn/{A}")
+    public ResponseEntity<List<Student>> getStudentOnA(@PathVariable("A") char variable) {
+        List<Student> students = studentService.getStudentOnA(variable);
+        return ResponseEntity.ok(students);
+    }
+
+    @GetMapping()
+    public ResponseEntity<String> getLongestFacultyName() {
+
+    }
+
+    @GetMapping()
+    public ResponseEntity<Integer> getExpression() {
+        Integer expression = studentService.getExpression();
+        return ResponseEntity.ok(expression);
+    }
+
+
 }
