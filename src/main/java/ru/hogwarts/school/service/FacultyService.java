@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repositories.FacultyRepository;
 
 import java.util.*;
@@ -47,6 +48,14 @@ public class FacultyService {
     public List<Faculty> getFacultyByColorAndName(String color, String name) {
         logger.debug("method called getFacultyByColorAndName");
         return facultyRepository.getFacultiesByColorAndName(color, name);
+    }
+
+    public String getLongestFacultyName() {
+        return facultyRepository.findAll()
+                .stream()
+                .map(Faculty::getName)
+                .max(Comparator.comparingInt(String::length))
+                .orElse(null);
     }
 
 }

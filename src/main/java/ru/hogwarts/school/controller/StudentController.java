@@ -78,15 +78,19 @@ public class StudentController {
     }
 
     @GetMapping()
-    public ResponseEntity<String> getLongestFacultyName() {
-
-    }
-
-    @GetMapping()
     public ResponseEntity<Integer> getExpression() {
         Integer expression = studentService.getExpression();
         return ResponseEntity.ok(expression);
     }
 
+    @GetMapping("/getStudentNoParallel")
+    public void getStudentsNotParallel() {
+        studentService.getStudentNoParallel();
+    }
+
+    @GetMapping("/getStudentParallel")
+    public void getStudentParallel() {
+        studentService.getStudentParallel();
+    }
 
 }

@@ -82,22 +82,42 @@ public class StudentService {
         return filteredStudents;
     }
 
-    public String getLongestFacultyName() {
-        logger.debug("method called getLongestFacultyName");
-        String longestFacultyName = studentRepository.findAll()
-                .stream()
-                .map(s -> s.getFaculty().getName().length())
-                .max(Comparator.comparingInt(s -> s.g))
-
-
-    }
-
     public int getExpression() {
         logger.debug("method called getExpression");
         int sum = Stream.iterate(1, a -> a + 1)
                 .limit(1_000_000)
                 .reduce(0, (a,b) -> a + b);
         return sum;
+    }
+
+    public void getStudentNoParallel() {
+        System.out.println(studentRepository.findAll().get(1));
+        System.out.println(studentRepository.findAll().get(2));
+        new Thread(() ->{
+            System.out.println(studentRepository.findAll().get(2));
+            System.out.println(studentRepository.findAll().get(3));
+        }).start();
+
+        new Thread(() ->{
+            System.out.println(studentRepository.findAll().get(5));
+            System.out.println(studentRepository.findAll().get(6));
+        }).start();
+
+    }
+
+    public synchronized void getStudentParallel() {
+            System.out.println(studentRepository.findAll().get(1));
+            System.out.println(studentRepository.findAll().get(2));
+        new Thread(() ->{
+            System.out.println(studentRepository.findAll().get(3));
+            System.out.println(studentRepository.findAll().get(4));
+        }).start();
+        new Thread(() ->{
+            System.out.println(studentRepository.findAll().get(4));
+            System.out.println(studentRepository.findAll().get(5));
+        }).start();
+
+
     }
 
 }
