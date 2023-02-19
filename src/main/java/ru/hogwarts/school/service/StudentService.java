@@ -10,6 +10,7 @@ import ru.hogwarts.school.repositories.StudentRepository;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 @Service
@@ -84,10 +85,10 @@ public class StudentService {
 
     public int getExpression() {
         logger.debug("method called getExpression");
-        int sum = Stream.iterate(1, a -> a + 1)
-                .limit(1_000_000)
-                .reduce(0, (a,b) -> a + b);
-        return sum;
+        int limit = 1_000_000;
+        return IntStream
+                .range(1, limit + 1)
+                .sum();
     }
 
     public void getStudentNoParallel() {
