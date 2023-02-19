@@ -37,7 +37,7 @@ public class StudentController {
         return studentService.findStudent(id);
     }
 
-    @GetMapping
+    @GetMapping("/students-by-age")
     public Student findStudentByAge(@RequestParam Long ageAfter,
                                     @RequestParam Long ageBefore) {
         return studentService.findStudentByAge(ageAfter, ageBefore);
